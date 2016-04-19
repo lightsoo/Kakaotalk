@@ -15,10 +15,13 @@ import com.kakao.auth.KakaoSDK;
 public class MyApplication extends Application{
 
     private Activity currentTopActivity;
+    private static Context mContext;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        mContext = this;
+
         KakaoSDK.init(new KakaoAdapter() {
             @Override
             public IApplicationConfig getApplicationConfig() {
@@ -74,5 +77,12 @@ public class MyApplication extends Application{
 
             }
         });
+
+
+
+    }
+
+    public static Context getContext() {
+        return mContext;
     }
 }

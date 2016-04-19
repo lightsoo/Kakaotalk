@@ -25,11 +25,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class KakaoLoginActivity extends Activity  {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kakao_login);
-
+    public void getHash(){
         try {
             PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
@@ -42,6 +38,12 @@ public class KakaoLoginActivity extends Activity  {
         } catch (NoSuchAlgorithmException e) {
 
         }
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_kakao_login);
+        getHash();
 
         LoginButton loginButton = (LoginButton)findViewById(R.id.com_kakao_login);
 
@@ -90,11 +92,11 @@ public class KakaoLoginActivity extends Activity  {
 
 
 
-    protected void redirectSignupActivity() {       //세션 연결 성공 시 SignupActivity로 넘김
-        final Intent intent = new Intent(this, KakaoSignupActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-        finish();
-    }
+//    protected void redirectSignupActivity() {       //세션 연결 성공 시 SignupActivity로 넘김
+//        final Intent intent = new Intent(this, KakaoSignupActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//        startActivity(intent);
+//        finish();
+//    }
 
 }
