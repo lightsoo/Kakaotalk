@@ -3,6 +3,7 @@ package com.sample.lightsoo.kakaotalk;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.kakao.auth.ISessionCallback;
@@ -43,8 +44,8 @@ public class LoginActivity extends Activity  {
             @Override
             public void onSessionOpened() {
                 Toast.makeText(LoginActivity.this, "accessToken : " + Session.getCurrentSession().getAccessToken(), Toast.LENGTH_SHORT).show();
-//                userLoginId = Session.getCurrentSession().getAccessToken();
-
+                userLoginId = Session.getCurrentSession().getAccessToken();
+                Log.d(TAG, "userLoginId : " + userLoginId);
                 UserManagement.requestMe(new MeResponseCallback() {
                     @Override
                     public void onSessionClosed(ErrorResult errorResult) {
@@ -59,8 +60,8 @@ public class LoginActivity extends Activity  {
                     @Override
                     public void onSuccess(UserProfile result) {
                         Toast.makeText(LoginActivity.this, "User : " + result.getId(), Toast.LENGTH_SHORT).show();
-
-                        userLoginId = ""+ result.getId();
+                        Log.d(TAG, "User : " +  result.getId());
+//                        userLoginId = ""+ result.getId();
 
                         user = new User(userLoginId, PropertyManager.LOGIN_TYPE_KAKAO);
                         Call call = NetworkManager.getInstance().getAPI(LoginAPI.class).login(user);

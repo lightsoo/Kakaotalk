@@ -57,6 +57,8 @@ public class SplashActivity extends AppCompatActivity {
                     if(!TextUtils.isEmpty(userLoginId)){
 
                         Log.d(TAG, "id가 있는경우 :!TextUtils.isEmpty(userLoginId))");
+                        Log.d(TAG, "userLoginId : " + userLoginId );
+
                         loginType = PropertyManager.getInstance().getLoginType();
                         User user = new User(userLoginId, loginType);
 
