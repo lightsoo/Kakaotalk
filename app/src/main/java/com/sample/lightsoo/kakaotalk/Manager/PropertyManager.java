@@ -26,6 +26,7 @@ public class PropertyManager {
 
     public void setUserLoginId(String id){
         mEditor.putString(FILED_KAKAO_ID, id);
+//        mEditor.putInt(FILED_KAKAO_ID, id);
         mEditor.commit();
     }
 
